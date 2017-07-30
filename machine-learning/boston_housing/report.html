@@ -12190,9 +12190,9 @@ Standard deviation of prices: $165,171.13
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
 <p>We need to split dataset into training set and test set in order to see how our model behaves on unseen data.</p>
-<p>Using all dataset can lead to overfitting nad inability to generalize well.</p>
-<p>Splitting of dataset can lead to situations where training dataset contains data to which only some of the features are important.</p>
-<p>So the model will not be able to catch all relevant features. This will lead to underfitting.</p>
+<p>If we train and test on the same data this can lead to overfitting since model can try just to memorise the answers.</p>
+<p>Calculating accuracy score on testing data will allow us to ensure that model does not overfit and indeed makes good predictions not only on training set but on unseen data too.</p>
+<p>Splitting of dataset can lead to situations where training dataset contains data to which only some of the features are important. In order words, it can happen that training set does not contain all variety of possible data (for instance, extreme case where all outcomes in training data are the same; then model can try to predict that outcome is always the same regardless of the inputs parameters). So the model will not be able to generalize. This will lead to underfitting.</p>
 
 </div>
 </div>
@@ -13854,10 +13854,11 @@ Testing score for depth equal to 3 is almost the same as for training score. It 
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>K-fold cros-validation training technique is the idea of splitting dataset into K non-intersecting subsets of equal size.</p>
+<p>K-fold cros-validation training technique is the idea of splitting training dataset into K non-intersecting subsets of equal size.</p>
+<p>Using default KFold method that data will split sequencially. However, there are parameters that allow us to split the data randomly.</p>
 <p>Then we must do K iterations.</p>
-<p>On each iteration we choose some subset (but not chosen as testing set on any of previous steps) as testing set. The rest subsets are chosen as one training set.</p>
-<p>The average error of all iterations is used as metric of accuracy of the model</p>
+<p>On each iteration we choose some subset (but not chosen as cross-validation set on any of previous steps) as cross-validation set. The rest subsets are chosen as one training set.</p>
+<p>The average error of all iterations is used as metric of accuracy of the model.</p>
 <p>The benefit of this technique is that it does not rely on how train and test subsets are splitted. This helps to reduce variance of the resulting model.</p>
 <p>For grid search this technique allows to ensure set of parameters that fits data the best.</p>
 
